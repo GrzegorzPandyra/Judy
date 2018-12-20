@@ -1,31 +1,36 @@
 import os
+import re
+from builtins import print
 from pathlib import Path
 PROJECT_ROOT = "D:\\PROGRAMOWANIE\\C\\Judy"
-
 ###############################################
 #                 Functions
 ###############################################
 
 #Recursively runs through directories
-def scanFolder(path):
-	print("Now scanning "+path)
+def scanFolder(path, depth):
+	offset = depth*"   "
+	print(offset+"Now scanning "+path)
 	for item in os.scandir(path):
 		if(item.is_dir()):
-			scanFolder(item.path)
+			scanFolder(item.path, depth+1)
 		else:
-			print("FILE: "+item.name)
+			print(offset+"FILE: "+item.name)
 			file = open(item.path, "r")
+			#Test calls
 			checkFileAccess(file)
 			checkMemAlloc(file)
-			
+
 #Checks if after 'fopen()' appears 'fclose()' within a function
 def checkFileAccess(sourceFile):
 	openedFiles = 0
 	closedFiles = 0
+	re_fopen = re.compile("[^//]*fopen.*")
+	re_close = re.compile("[^//]*fclose.*")
 	for line in sourceFile:
-		if line.find("fopen") != -1 and not line.startswith("//"):
+		if re.search(re_fopen, line):
 			openedFiles += 1
-		if line.find("fclose") != -1 and not line.startswith("//"):
+		if re.search(re_close, line):
 			closedFiles += 1
 	if openedFiles != closedFiles:
 		print("    CHECK FILE ACCESS: MISMATCH BETWEEN OPENED FILES["+str(openedFiles)+"] AND CLOSED FILES["+str(closedFiles)+"]")
@@ -59,12 +64,11 @@ for line in configFile:
 #print config data
 for x in configData:	
 	print(x+" - "+configData[x])
-	
 print("Config data acquired")
 configFile.close()
 
 ###############################################
 #Run checks on files
 ###############################################
-scanFolder(PROJECT_ROOT+"\\src")
+scanFolder(PROJECT_ROOT+"\\src", 0)
 #os.system("pause")

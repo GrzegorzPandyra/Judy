@@ -8,6 +8,8 @@ void scrollDown();
 void scrollUp();
 void pageDown();
 void pageUp();
-void fillEmptySpace(char*, char);
+void equalizeRowLength(char*, char);
 void clearBuffer();
+void loadNavigationInfo();
+void initRow(char*, char);
 #endif

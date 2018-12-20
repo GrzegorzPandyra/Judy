@@ -9,13 +9,13 @@
 extern unsigned totalLines;
 
 int readFile(char* path, char buffer[BUFFER_HEIGHT][BUFFER_WIDTH]){
-	//FILE *f = fopen(path, "r");
+	FILE *f = fopen(path, "r");
 	if (f == NULL)
 	{
 		LOG("|fileIO.c|  ERROR: Failed to open file\n");
 		perror("ERROR: Failed to open file");
 		system("pause");
-		return 1;
+		return -1;
 	}  
 	LOG("|fileIO.c|  INFO: Reading input file\n");
 	char currentChar;
@@ -26,9 +26,7 @@ int readFile(char* path, char buffer[BUFFER_HEIGHT][BUFFER_WIDTH]){
 			//LOG("|fileIO.c|  INFO: looop\n");
 			//LOG_VALUE("|fileIO.c|  INFO: iteration: ", *ptr);
 			if(*(ptr+1+LINE_NUM_OFFSET) == '\0'){
-				LOG("|fileIO.c|  INFO: WRAP ");
-				LOG_CHAR(currentChar);
-				LOG_VALUE("",currentChar);
+				// LOG_CHAR("|fileIO.c|  INFO: WRAP: ", currentChar);
 				totalLines++;
 				j++;
 				ptr = buffer[INFO_WINDOW_HEIGHT+j]+SCREEN_WRAP_DISTANCE;

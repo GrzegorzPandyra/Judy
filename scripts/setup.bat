@@ -9,6 +9,7 @@ notepad++ %PROJECT_ROOT%\src\c\fileIO.c
 notepad++ %PROJECT_ROOT%\src\c\interface.c
 notepad++ %PROJECT_ROOT%\src\c\debug.c
 notepad++ %PROJECT_ROOT%\src\c\toolbox.c
+notepad++ %PROJECT_ROOT%\src\c\vigenere.c
 
 notepad++ %PROJECT_ROOT%\src\h\config.h
 ::notepad++ %PROJECT_ROOT%\src\h\fileIO.h
