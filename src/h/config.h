@@ -1,8 +1,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define PROJECT_ROOT "C:\Users\Greg\Dropbox\PROGRAMOWANIE\\C\\Judy"
-#define LOG_PATH     "C:\Users\Greg\Dropbox\PROGRAMOWANIE\\C\\Judy\\logs\\debug.log"
+#define PROJECT_ROOT "C:\\Users\\Greg\\Dropbox\\PROGRAMOWANIE\\C\\Judy"
+#define LOG_PATH     "C:\\Users\\Greg\\Dropbox\\PROGRAMOWANIE\\C\\Judy\\logs\\debug.log"
 
 #define SCREEN_WIDTH  121
 #define SCREEN_HEIGHT  53
