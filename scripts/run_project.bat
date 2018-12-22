@@ -1,5 +1,5 @@
 ::Root folder for the project
-set PROJECT_ROOT=D:\PROGRAMOWANIE\C\Judy\
+set PROJECT_ROOT=C:\Users\Greg\Dropbox\PROGRAMOWANIE\C\Judy\
 set PROJECT_NAME=judy
 
 ::init
