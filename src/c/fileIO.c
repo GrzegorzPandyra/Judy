@@ -12,11 +12,12 @@ int readFile(char* path, char buffer[BUFFER_HEIGHT][BUFFER_WIDTH]){
 	FILE *f = fopen(path, "r");
 	if (f == NULL)
 	{
-		LOG("|fileIO.c|  ERROR: Failed to open file\n");
-		perror("ERROR: Failed to open file");
-		system("pause");
+		LOG("|fileIO.c|  ERROR: Failed to open file for read\n");
+		// perror("ERROR: Failed to open file");
+		
 		return -1;
 	}  
+	clearBuffer();
 	LOG("|fileIO.c|  INFO: Reading input file\n");
 	char currentChar;
 	int j=1;
@@ -52,3 +53,18 @@ int readFile(char* path, char buffer[BUFFER_HEIGHT][BUFFER_WIDTH]){
 	return 0;
 }
 
+int writeFile(char *path, char buffer[BUFFER_HEIGHT][BUFFER_WIDTH]){
+	FILE *f = fopen(path, "w");
+	if (f == NULL)
+	{
+		LOG("|fileIO.c|  ERROR: Failed to open file for write\n");
+		return -1;
+	}
+	int currentLine = 0;
+	while(currentLine <= totalLines){
+		fputs(buffer[currentLine], f);
+		currentLine++;
+	}
+	fclose(f);
+	return 0;
+}

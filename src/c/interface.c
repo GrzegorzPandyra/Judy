@@ -18,6 +18,9 @@ void clearBuffer(){
 		initRow(buffer[i], ' ');
 		i++;
 	}
+	firstLine = 0;
+	totalLines = 0;
+	strcpy(buffer[INFO_WINDOW_HEIGHT+1], "(buffer is empty)");
 	// LOG_DUMP_MATRIX(buffer);
 }
 
@@ -78,9 +81,12 @@ void loadFileInfo(char* path){
 void loadNavigationInfo(){
 	char* pathStr = malloc(INTERFACE_MAX_PATH_LENGTH*sizeof(pathStr));
 	strcpy(screen[SCREEN_HEIGHT-NAVIGATION_PANEL_HEIGHT+1]+FILEPATH_X, 
-			"E - encrypt, D - decrypt, P/L - page up/down, W/S - scroll up/down");
+			"O - open file, C - close file E - encrypt, D - decrypt");
+	strcpy(screen[SCREEN_HEIGHT-NAVIGATION_PANEL_HEIGHT+2]+FILEPATH_X, 
+			"P/L - page up/down, W/S - scroll up/down");
 	free(pathStr);
 	equalizeRowLength(screen[SCREEN_HEIGHT-NAVIGATION_PANEL_HEIGHT+1], SPACE);
+	equalizeRowLength(screen[SCREEN_HEIGHT-NAVIGATION_PANEL_HEIGHT+2], SPACE);
 }
 
 /*

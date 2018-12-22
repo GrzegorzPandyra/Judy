@@ -1,8 +1,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define PROJECT_ROOT "D:\\PROGRAMOWANIE\\C\\Judy"
-#define LOG_PATH "D:\\PROGRAMOWANIE\\C\\Judy\\logs\\debug.log"
+#define PROJECT_ROOT "C:\Users\Greg\Dropbox\PROGRAMOWANIE\\C\\Judy"
+#define LOG_PATH     "C:\Users\Greg\Dropbox\PROGRAMOWANIE\\C\\Judy\\logs\\debug.log"
 
 #define SCREEN_WIDTH  121
 #define SCREEN_HEIGHT  53
@@ -12,7 +12,7 @@
 #define BUFFER_WIDTH  121
 #define BUFFER_HEIGHT  1000
 #define INFO_WINDOW_HEIGHT 2
-#define NAVIGATION_PANEL_HEIGHT 3
+#define NAVIGATION_PANEL_HEIGHT 4
 #define FILEPATH_X  6
 #define FILEPATH_Y  1
 
@@ -51,4 +51,10 @@
 #define SCROLL_UP_BTN_2 'W'
 #define SCROLL_DOWN_BTN_1 's'
 #define SCROLL_DOWN_BTN_2 'S'
+#define OPEN_FILE_BTN_1 'o'
+#define OPEN_FILE_BTN_2 'O'
+#define CLOSE_FILE_BTN_1 'c'
+#define CLOSE_FILE_BTN_2 'C'
+#define SAVE_AS_BTN_1 't'
+#define SAVE_AS_BTN_2 'T'
 #endif
