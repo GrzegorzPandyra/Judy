@@ -57,4 +57,6 @@
 #define CLOSE_FILE_BTN_2 'C'
 #define SAVE_AS_BTN_1 't'
 #define SAVE_AS_BTN_2 'T'
+#define QUIT_BTN_1 'q'
+#define QUIT_BTN_2 'Q'
 #endif

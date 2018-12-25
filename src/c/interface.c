@@ -20,7 +20,7 @@ void clearBuffer(){
 	}
 	firstLine = 0;
 	totalLines = 0;
-	strcpy(buffer[INFO_WINDOW_HEIGHT+1], "(buffer is empty)");
+	strcpy(buffer[INFO_WINDOW_HEIGHT+1], "<buffer is empty>");
 	// LOG_DUMP_MATRIX(buffer);
 }
 
@@ -83,7 +83,7 @@ void loadNavigationInfo(){
 	strcpy(screen[SCREEN_HEIGHT-NAVIGATION_PANEL_HEIGHT+1]+FILEPATH_X, 
 			"O - open file, C - close file E - encrypt, D - decrypt");
 	strcpy(screen[SCREEN_HEIGHT-NAVIGATION_PANEL_HEIGHT+2]+FILEPATH_X, 
-			"P/L - page up/down, W/S - scroll up/down");
+			"P/L - page up/down, W/S - scroll up/down, Q - quit");
 	free(pathStr);
 	equalizeRowLength(screen[SCREEN_HEIGHT-NAVIGATION_PANEL_HEIGHT+1], SPACE);
 	equalizeRowLength(screen[SCREEN_HEIGHT-NAVIGATION_PANEL_HEIGHT+2], SPACE);
@@ -148,16 +148,22 @@ void initRow(char* str, char c){
 void rePrintInterface(char* path){
 	system("cls");
 	loadFileInfo(path);
+	LOG("|interface.c|  INFO: 1\n");
 	loadNavigationInfo();
+	LOG("|interface.c|  INFO: 2\n");
 	loadScreen();
+	LOG("|interface.c|  INFO: 3\n");
 	loadBorders();
+	LOG("|interface.c|  INFO: 4\n");
 	//print screen
 	int i = 0;
 	while(i < SCREEN_HEIGHT){
 		printf("%s\n", screen[i]);	
+		LOG("|interface.c|  INFO: 5\n");
 		i++;
 		// printf("\n");
 	}
+	LOG("|interface.c|  INFO: 6\n");
 	// LOG_DUMP_MATRIX(buffer);
 	// LOG_VALUE("|interface.c|  INFO: First line: ", firstLine);
 }

@@ -1,21 +1,24 @@
 /***
 ***Judy***
-version 3.0
+version 3.1
 Grzegorz Pandyra
-Wrocław 2018
+Kraków 2018
 ***/
 
 
 /*
  * KNOWN ISSUES:
+ * > 'save as' saves buffer with offset, which corrupts the encrypted data
  * > navigation window is missing content on startup
- * > crash when no file is selected
+ * > FIXED crash when no file is selected  
  *
  *
  * TO DO:
  * > file navigation(open/close file)
  * > save buffer to file
  * > work with multiple files
+ * > word search
+ * > path auto-completion
  */
 
 #include <stdio.h>
@@ -31,9 +34,10 @@ Wrocław 2018
 extern char buffer[BUFFER_HEIGHT][BUFFER_WIDTH];													//holds entire data from file, encryption is performed here
 extern char screen[SCREEN_HEIGHT][SCREEN_WIDTH];													//used to display a slice of buffer along with UI
 int main(int argc, char **argv) {
-	char userInput;
+	char userInput = '0';
 	char *password = malloc(sizeof(*password)*PASSWORD_MAX_LENGTH);
 	char *filePath = malloc(sizeof(*filePath)*PASSWORD_MAX_LENGTH);
+	char *loadedFilePath;
 	short fileStatus = 0;
 	// char *fileName;
 	LOG_INIT();
@@ -41,19 +45,24 @@ int main(int argc, char **argv) {
 	/*
 	 * ARGS EXECUTION
 	 */
+	if(argc == 1){
+		loadedFilePath = "<select file>";															//program launched without target file						
+	} else {
+		loadedFilePath = argv[1];															
+	}	
 	 switch(argc){
 		 case 1:
 			LOG("|main.c|  INFO: no file loaded\n");
 		 break;
 		 case 2:
-			readFile(argv[1], buffer);	
+			readFile(loadedFilePath, buffer);	
 		 break;
 		 case 3:
-			readFile(argv[1], buffer);	
+			readFile(loadedFilePath, buffer);	
 			LOG("|main.c|  WARNING: UNKNOWN ARGUMENT\n");
 		 break;
 		 case 4:
-			readFile(argv[1], buffer);
+			readFile(loadedFilePath, buffer);
 			if(strcmp(argv[2],"-e") == 0 || strcmp(argv[2],"-E") == 0 || strcmp(argv[2],"--encrypt") == 0){
 				LOG("|main.c|  INFO: ENCRYPTING FILE\n");
 				encryptData(buffer, argv[3]);
@@ -83,11 +92,13 @@ int main(int argc, char **argv) {
 			// }
 		// }			
 	// }
-	rePrintInterface(argv[1]);
+	
+	rePrintInterface(loadedFilePath);
 	/*
 	 * USER INPUT
 	 */
-	while( (userInput = getch()) != 'q'){
+	while( userInput != QUIT_BTN_1 && userInput != QUIT_BTN_2){
+		userInput = getch();
 		switch(userInput){
 			case SCROLL_DOWN_BTN_1:
 			case SCROLL_DOWN_BTN_2:
@@ -161,6 +172,6 @@ int main(int argc, char **argv) {
 				LOG3("|main.c|  INFO: pressed: ", &userInput, "\n");
 			break;
 		}
-		rePrintInterface(argv[1]);
+		rePrintInterface(loadedFilePath);
 	}		
 }
