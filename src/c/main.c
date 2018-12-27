@@ -8,9 +8,10 @@ Kraków 2018
 
 /*
  * KNOWN ISSUES:
- * > 'save as' saves buffer with offset, which corrupts the encrypted data
+ * > FIXED 'save as' saves buffer with offset, which corrupts the encrypted data
  * > navigation window is missing content on startup
- * > FIXED crash when no file is selected  
+ * > FIXED crash when no file is selected
+ * > missing lines at the start and end of buffer (when scrolling the screen)
  *
  *
  * TO DO:
@@ -155,6 +156,7 @@ int main(int argc, char **argv) {
 			case CLOSE_FILE_BTN_2:
 				clearBuffer();
 				LOG("|main.c|  INFO: file closed\n");
+				// readFile(DEBUG_SAVE_FILE_3, buffer);
 			break;
 			case SAVE_AS_BTN_1:
 			case SAVE_AS_BTN_2:
