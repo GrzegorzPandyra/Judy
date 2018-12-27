@@ -45,17 +45,19 @@ int readFile(char* path, char buffer[BUFFER_HEIGHT][BUFFER_WIDTH]){
 				ptr++;					
 			}
 		} else {
-			//LOG3("|fileIO.c|  INFO: Read line:", buffer[INFO_WINDOW_HEIGHT+j], "\n");
+			// LOG3("|fileIO.c|  INFO: Read line:", buffer[rowNum], "\n");
+			// LOG_VALUE("|fileIO.c|  INFO: total lines: ", totalLines);
 			totalLines++;
 			//*ptr = '\0';
 			rowNum++;
 			ptr = buffer[rowNum];
 		}
 	}
+	totalLines++;
 	LOG_VALUE("|fileIO.c|  INFO: Total lines: ", totalLines);
 	fclose(f);	
 	loadFileInfo(path);
-	LOG_DUMP_MATRIX(buffer);
+	// LOG_DUMP_MATRIX(buffer);
 	return 0;
 }
 

@@ -34,12 +34,9 @@ void loadBorders(){
 	/*Info bar*/
 	int i=0;
 	while(i<SCREEN_WIDTH-1){
-		screen[INFO_WINDOW_HEIGHT][i] = HORIZONTAL_BORDER_CHAR;
+		screen[INFO_WINDOW_HEIGHT-1][i] = HORIZONTAL_BORDER_CHAR;
 		i++;
 	}
-	/*Program name*/
-	strcpy(screen[PROGRAM_NAME_Y]+PROGRAM_NAME_X, PROGRAM_NAME);
-	equalizeRowLength(screen[PROGRAM_NAME_Y], HORIZONTAL_BORDER_CHAR);
 	/*Navigation panel*/
 	i=0;
 	while(i<SCREEN_WIDTH-1){
@@ -62,6 +59,9 @@ void loadBorders(){
 		screen[i][SCREEN_WIDTH-1] = '\0';
 		i++;
 	}
+	/*Program name*/
+	strcpy(screen[PROGRAM_NAME_Y]+PROGRAM_NAME_X, PROGRAM_NAME);
+	equalizeRowLength(screen[PROGRAM_NAME_Y], HORIZONTAL_BORDER_CHAR);
 }
 
 
@@ -101,7 +101,8 @@ void loadScreen(){
 	char* lineNum = malloc(15*sizeof(char));
 	char* line = malloc(SCREEN_WIDTH*sizeof(char));
 	while(i < SCREEN_HEIGHT-NAVIGATION_PANEL_HEIGHT-INFO_WINDOW_HEIGHT){
-		sprintf(lineNum, " %4d| ", i+firstLine);
+		// LOG_VALUE("|interface.c|  INFO: First line: ", firstLine);
+		sprintf(lineNum, " %4d| ", i+firstLine+1);													// +1 for the first line to be num 1 instead of num 0
 		strcpy(line, "");
 		strcat(line, lineNum);
 		strcat(line, buffer[i+firstLine]);
@@ -191,7 +192,7 @@ void scrollUp(){
 void pageDown(){
 	if(totalLines > SCREEN_HEIGHT){
 		if(firstLine + PAGING_DISTANCE + SCREEN_HEIGHT > totalLines){
-			firstLine = totalLines - SCREEN_HEIGHT;
+			firstLine = totalLines - SCREEN_HEIGHT + NAVIGATION_PANEL_HEIGHT + INFO_WINDOW_HEIGHT;
 		} else {
 			firstLine += PAGING_DISTANCE;
 		}	

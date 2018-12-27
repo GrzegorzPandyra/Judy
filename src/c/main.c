@@ -11,7 +11,7 @@ Kraków 2018
  * > FIXED 'save as' saves buffer with offset, which corrupts the encrypted data
  * > navigation window is missing content on startup
  * > FIXED crash when no file is selected
- * > missing lines at the start and end of buffer (when scrolling the screen)
+ * > FIXED missing lines at the start and end of buffer (when scrolling the screen)
  *
  *
  * TO DO:
