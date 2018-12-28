@@ -17,14 +17,11 @@ unsigned totalLines = 0;
 void clearBuffer(){
 	int i = 0;
 	while(i < BUFFER_HEIGHT){
-		// equalizeRowLength(buffer[i], ' ');
 		initRow(buffer[i], SPACE);
 		i++;
 	}
 	firstLine = 0;
 	totalLines = 0;
-	// strcpy(buffer[INFO_WINDOW_HEIGHT+1], "<buffer is empty>");
-	// LOG_DUMP_MATRIX(buffer);
 }
 
 /*
@@ -73,7 +70,6 @@ void loadFileInfo(char* path){
 	strcpy(pathStr, "Path: ");
 	strcat(pathStr, path);
 	strcpy(screen[FILEPATH_Y]+FILEPATH_X, pathStr);
-	// LOG("|interface.c|  INFO: !!!\n");
 	free(pathStr);
 	equalizeRowLength(screen[FILEPATH_Y], SPACE);
 }
@@ -101,7 +97,6 @@ void loadScreen(){
 	char* lineNum = malloc(15*sizeof(char));
 	char* line = malloc(SCREEN_WIDTH*sizeof(char));
 	while(i < SCREEN_HEIGHT-NAVIGATION_PANEL_HEIGHT-INFO_WINDOW_HEIGHT){
-		// LOG_VALUE("|interface.c|  INFO: First line: ", firstLine);
 		sprintf(lineNum, " %4d| ", i+firstLine+1);													// +1 for the first line to be num 1 instead of num 0
 		strcpy(line, "");
 		strcat(line, lineNum);
@@ -111,8 +106,6 @@ void loadScreen(){
 		strcpy(screen[i+INFO_WINDOW_HEIGHT], line);
 		i++;
 	}
-	// LOG_DUMP_MATRIX2(screen);
-	// LOG_DUMP_MATRIX(buffer);
 	free(line);
 	free(lineNum);
 }
@@ -124,13 +117,11 @@ void loadScreen(){
  */
 void equalizeRowLength(char* str, char c){
 	int charCount = strlen(str);
-	// LOG_VALUE("|interface.c|  INFO: str len before  ", strlen(str));
 	while(charCount < SCREEN_WIDTH-1){
 		*(str+charCount) = c;
 		charCount++;
 	}
 	*(str+charCount) = '\0';
-	// LOG_VALUE("|interface.c|  INFO: str len after  ", strlen(str));
 }
 
 
@@ -152,24 +143,14 @@ void initRow(char* str, char c){
 void rePrintInterface(char* path){
 	system("cls");
 	loadFileInfo(path);
-	// LOG("|interface.c|  INFO: 1\n");
 	loadNavigationInfo();
-	// LOG("|interface.c|  INFO: 2\n");
 	loadScreen();
-	// LOG("|interface.c|  INFO: 3\n");
 	loadBorders();
-	// LOG("|interface.c|  INFO: 4\n");
-	//print screen
 	int i = 0;
 	while(i < SCREEN_HEIGHT){
 		printf("%s\n", screen[i]);	
-		// LOG("|interface.c|  INFO: 5\n");
 		i++;
-		// printf("\n");
 	}
-	// LOG("|interface.c|  INFO: 6\n");
-	// LOG_DUMP_MATRIX(buffer);
-	// LOG_VALUE("|interface.c|  INFO: First line: ", firstLine);
 }
 
 

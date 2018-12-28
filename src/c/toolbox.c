@@ -9,9 +9,6 @@ void repCharInStr(char* str, char oldChar, char newChar, int lineNum){
 	short cnt = 0;
 	char* strPtr = str;
 	while(*strPtr != '\0'){
-		// LOG("|toolbox.c|  WARNING: CHAR: ");
-		// LOG_CHAR(*strPtr);
-		// LOG("\n");
 		if(*strPtr == oldChar){
 			*strPtr = newChar;
 		} 
@@ -22,5 +19,4 @@ void repCharInStr(char* str, char oldChar, char newChar, int lineNum){
 		strPtr++;
 		cnt++;
 	}
-	// LOG_VALUE("|toolbox.c|  INFO: Found '\\0' after ", cnt);
 }

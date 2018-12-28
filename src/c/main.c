@@ -1,6 +1,6 @@
 /***
 ***Judy***
-version 3.1
+version 4
 Grzegorz Pandyra
 Kraków 2018
 ***/
@@ -11,7 +11,7 @@ Kraków 2018
  * > FIXED 'save as' saves buffer with offset, which corrupts the encrypted data
  * > FIXED crash when no file is selected
  * > FIXED missing lines at the start and end of buffer (when scrolling the screen)
- * > navigation window is missing content on startup
+ * > FIXED navigation window is missing content on startup
  *
  *
  * TO DO:
@@ -160,6 +160,6 @@ int main(int argc, char **argv) {
 				LOG3("|main.c|  INFO: pressed: ", &userInput, "\n");
 			break;
 		}
-		// rePrintInterface(loadedFilePath);
+		rePrintInterface(loadedFilePath);
 	}		
 }

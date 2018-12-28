@@ -3,8 +3,6 @@
 
 #define PROJECT_ROOT "C:\\Users\\Greg\\Dropbox\\PROGRAMOWANIE\\C\\Judy"
 #define LOG_PATH     "C:\\Users\\Greg\\Dropbox\\PROGRAMOWANIE\\C\\Judy\\logs\\debug.log"
-#define DEBUG_SAVE_FILE     "C:\\Users\\Greg\\Dropbox\\PROGRAMOWANIE\\C\\Judy\\data2.txt"
-#define DEBUG_SAVE_FILE_3     "C:\\Users\\Greg\\Dropbox\\PROGRAMOWANIE\\C\\Judy\\data3.txt"
 
 #define SCREEN_WIDTH  121
 #define SCREEN_HEIGHT  53
@@ -24,7 +22,7 @@
 #define PROGRAM_NAME_X 54
 #define PROGRAM_NAME_Y 0
 #define PROGRAM_NAME "Judy"
-#define PROGRAM_VERSION "3.1"
+#define PROGRAM_VERSION "4"
 #define PADDING 5
 
 #define INTERFACE_MAX_PATH_LENGTH 130

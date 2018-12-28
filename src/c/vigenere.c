@@ -21,7 +21,6 @@ void buildMatrix(char matrix[MATRIX_SIZE][MATRIX_SIZE]){
 		for(int k=0; k<i; k++){																		//run through chars <0;i)
 			matrix[i][k] = asciiNumber++;
 		}
-		//LOG3("|vigenere.c| ", matrix[i], "\n");
 	}
 	LOG("|vigenere.c| INFO: MATRIX BUILT\n");
 }
@@ -42,39 +41,24 @@ void buildMatrix(char matrix[MATRIX_SIZE][MATRIX_SIZE]){
  *				
  */
 void encryptData(char data[BUFFER_HEIGHT][BUFFER_WIDTH], char* password){
-	
-	//prep vigenere matrix
 	char matrix[MATRIX_SIZE][MATRIX_SIZE];
 	buildMatrix(matrix);
-	//
 	unsigned bufferRow = 0;
 	unsigned matrixRow, matrixCol;
 	short isFound;
 	char *dataPtr = (char*)data[0], *passwordPtr = password;
-	// LOG("|vigenere.c|  INFO: [1]\n");
 	while(bufferRow < BUFFER_HEIGHT){																//run through all rows in buffer
-		// LOG("|vigenere.c|  INFO: [2]\n");
 		isFound = 0;
 		matrixRow = 0; 
 		matrixCol = 0;
 		if(*dataPtr != SPACE && *dataPtr != TAB){
-			// LOG("|vigenere.c|  INFO: [3]\n");
 			while(matrixRow < MATRIX_SIZE && isFound == 0){											//run through all rows in matrix
-				// LOG("|vigenere.c|  INFO: [4]\n");
 				if(matrix[matrixRow][0] == *dataPtr){                                               //check if data character has been found
-					// LOG("|vigenere.c|  INFO: [5]\n");
 					while( matrixCol < MATRIX_SIZE && isFound == 0){                                //run through all columns in matrix
-						// LOG("|vigenere.c|  INFO: [6]\n");
 						if(matrix[0][matrixCol] == *passwordPtr){									//check if password character has been found
-							// if(*dataPtr == ':'){
-								// LOG_CHAR("|vigenere.c|  INFO: ENCRYPTED: ", *dataPtr);
-								// LOG_CHAR("|vigenere.c|  INFO:        AS: ", matrix[matrixRow][matrixCol]);								
-							// }
-							// LOG("|vigenere.c|  INFO: [7]\n");
 							*dataPtr = matrix[matrixRow][matrixCol];								//encrypt buffer character with corresponding matrix character 
 							passwordPtr++;
 							if(*passwordPtr == '\0'){
-								// LOG("|vigenere.c|  INFO: [8]\n");
 								passwordPtr = password;
 							}
 							isFound = 1;
@@ -92,10 +76,8 @@ void encryptData(char data[BUFFER_HEIGHT][BUFFER_WIDTH], char* password){
 		}
 		dataPtr++;																					//move to next character
 		if(*dataPtr == '\0'){																		//unless it is \0, then move to next row
-			// LOG("|vigenere.c|  INFO: [9]\n");
 			bufferRow++;
 			dataPtr = data[bufferRow];
-			// LOG("|vigenere.c| INFO: buffer advances to next row\n");
 		}
 	}
 }
@@ -108,11 +90,7 @@ void decryptData(char data[BUFFER_HEIGHT][BUFFER_WIDTH], char* password){
 	LOG("|vigenere.c|  INFO: DECRYPTING DATA... \n");
 	char matrix[MATRIX_SIZE][MATRIX_SIZE];
 	buildMatrix(matrix);
-	// LOG("|vigenere.c|  INFO: decrypt matrix built \n");
-	// LOG("|vigenere.c|  INFO: 1\n");
 	invertPassword(password, matrix[0]);
-	// LOG("|vigenere.c|  INFO: password inverted \n");
-	// LOG3("|vigenere.c|  INFO: decrypting with ", password, "\n");
 	encryptData(data, password);
 }
 
@@ -123,18 +101,10 @@ void decryptData(char data[BUFFER_HEIGHT][BUFFER_WIDTH], char* password){
 void invertPassword(char *password, char matrixChars[MATRIX_SIZE]){
 	char *passPtr = password;
 	LOG("|vigenere.c|  INFO: inverting password...\n");
-	// int q = 0;
 	while(*passPtr != '\0'){
 		LOG("|vigenere.c|  INFO: LOOP\n");
-		// q++;
-		// LOG_CHAR("|vigenere.c|  INFO: ", *passPtr);
-		// LOG3("|vigenere.c|  INFO: log char :", passPtr, "\n");
 		*passPtr = matrixChars[( MATRIX_SIZE - indexOf(*passPtr, matrixChars )) % MATRIX_SIZE];
 		passPtr++;
-		// if(q > 5){
-			// LOG("|vigenere.c|  ERROR: PASSWORD BOUNDS EXCEEDED!!!'n");
-			// abort();
-		// }
 	}
 	LOG("|vigenere.c|  INFO: inverting finished!\n");
 }

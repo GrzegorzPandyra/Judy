@@ -137,25 +137,17 @@ void LOG_VALUE(char* str1, int value){
  * carrie to next line
  */
 void LOG_CHAR(char *strPrefix, char c){
-	// LOG("|debug.c|  INFO: log char start\n");
 	FILE *f = fopen(LOG_PATH, "a");
 	if (f == NULL){
 		perror("ERROR: Lost handle for log file");
 		LOG("|debug.c|  ERROR: Lost handle for log file\n");
 	} else {
-		// LOG("|debug.c|  INFO: file OK\n");
 		char *str = malloc(DEBUG_MAX_STRING_LENGTH*sizeof(str));
-		// LOG("|debug.c|  INFO: malloc\n");
 		sprintf(str, "%s %c (ascii %d)\n", strPrefix, c, c);
-		// LOG("|debug.c|  INFO: sprintf\n");
 		fputs(str,f);
-		// LOG("|debug.c|  INFO: puts\n");
 		free(str);
-		// LOG("|debug.c|  INFO: free\n");
 		fclose(f);
-		// LOG("|debug.c|  INFO: fclose\n");
 		LOG_COUNT();
-		// LOG("|debug.c|  INFO: done\n");
 	}
 }
 
