@@ -22,7 +22,7 @@
 #define PROGRAM_NAME_X 54
 #define PROGRAM_NAME_Y 0
 #define PROGRAM_NAME "Judy"
-#define PROGRAM_VERSION "4"
+#define PROGRAM_VERSION "4.1"
 #define PADDING 5
 
 #define INTERFACE_MAX_PATH_LENGTH 130
@@ -59,4 +59,6 @@
 #define SAVE_AS_BTN_2 'T'
 #define QUIT_BTN_1 'q'
 #define QUIT_BTN_2 'Q'
+#define APPEND_BTN_1 'a'
+#define APPEND_BTN_2 'A'
 #endif

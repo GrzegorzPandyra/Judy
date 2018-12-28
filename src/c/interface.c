@@ -80,7 +80,7 @@ void loadFileInfo(char* path){
 void loadNavigationInfo(){
 	char* pathStr = malloc(INTERFACE_MAX_PATH_LENGTH*sizeof(pathStr));
 	strcpy(screen[SCREEN_HEIGHT-NAVIGATION_PANEL_HEIGHT+1]+FILEPATH_X, 
-			"O - open file, C - close file, T - save as..,  E - encrypt, D - decrypt");
+			"O - open file, C - close file, T - save as..,  E - encrypt, D - decrypt, A - append text");
 	strcpy(screen[SCREEN_HEIGHT-NAVIGATION_PANEL_HEIGHT+2]+FILEPATH_X, 
 			"P/L - page up/down, W/S - scroll up/down, Q - quit");
 	free(pathStr);
@@ -190,3 +190,11 @@ void pageUp(){
 	}
 }	
 
+/*
+ * Append line to the end of buffer 
+ */
+void appendLine(char *str){
+	strcpy(buffer[totalLines], str);
+	equalizeRowLength(buffer[totalLines], ' ');	
+	totalLines++;
+}

@@ -1,6 +1,6 @@
 /***
 ***Judy***
-version 4
+version 4.1
 Grzegorz Pandyra
 Kraków 2018
 ***/
@@ -38,6 +38,7 @@ int main(int argc, char **argv) {
 	char userInput = '0';
 	char *password = malloc(sizeof(*password)*PASSWORD_MAX_LENGTH);
 	char *filePath = malloc(sizeof(*filePath)*PASSWORD_MAX_LENGTH);
+	char *appendStr = malloc(sizeof(*appendStr)*PASSWORD_MAX_LENGTH);
 	char *loadedFilePath;
 	short fileStatus = 0;
 	LOG_INIT();
@@ -156,10 +157,20 @@ int main(int argc, char **argv) {
 				}
 				LOG("|main.c|  INFO: saved as...\n");
 			break;
+			case APPEND_BTN_1:
+			case APPEND_BTN_2:
+				printf("Append text: ");
+				gets(appendStr);
+				appendLine(appendStr);
+			break;
 			default:
 				LOG3("|main.c|  INFO: pressed: ", &userInput, "\n");
 			break;
 		}
 		rePrintInterface(loadedFilePath);
 	}		
+	free(filePath);
+	free(password);
+	free(appendStr);
+	return 0;
 }

@@ -12,4 +12,5 @@ void equalizeRowLength(char*, char);
 void clearBuffer();
 void loadNavigationInfo();
 void initRow(char*, char);
+void appendLine(char*);
 #endif
