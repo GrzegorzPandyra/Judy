@@ -9,14 +9,14 @@ Kraków 2018
 /*
  * KNOWN ISSUES:
  * > FIXED 'save as' saves buffer with offset, which corrupts the encrypted data
- * > navigation window is missing content on startup
  * > FIXED crash when no file is selected
  * > FIXED missing lines at the start and end of buffer (when scrolling the screen)
+ * > navigation window is missing content on startup
  *
  *
  * TO DO:
- * > file navigation(open/close file)
- * > save buffer to file
+ * > DONE file navigation(open/close file)
+ * > DONE save buffer to file
  * > work with multiple files
  * > word search
  * > path auto-completion
@@ -40,7 +40,6 @@ int main(int argc, char **argv) {
 	char *filePath = malloc(sizeof(*filePath)*PASSWORD_MAX_LENGTH);
 	char *loadedFilePath;
 	short fileStatus = 0;
-	// char *fileName;
 	LOG_INIT();
 	clearBuffer();
 	/*
@@ -51,18 +50,18 @@ int main(int argc, char **argv) {
 	} else {
 		loadedFilePath = argv[1];															
 	}	
-	 switch(argc){
-		 case 1:
+	switch(argc){
+		case 1:
 			LOG("|main.c|  INFO: no file loaded\n");
-		 break;
-		 case 2:
+		break;
+		case 2:
 			readFile(loadedFilePath, buffer);	
-		 break;
-		 case 3:
+		break;
+		case 3:
 			readFile(loadedFilePath, buffer);	
 			LOG("|main.c|  WARNING: UNKNOWN ARGUMENT\n");
-		 break;
-		 case 4:
+		break;
+		case 4:
 			readFile(loadedFilePath, buffer);
 			if(strcmp(argv[2],"-e") == 0 || strcmp(argv[2],"-E") == 0 || strcmp(argv[2],"--encrypt") == 0){
 				LOG("|main.c|  INFO: ENCRYPTING FILE\n");
@@ -75,26 +74,14 @@ int main(int argc, char **argv) {
 					LOG("|main.c|  WARNING: UNKNOWN ARGUMENT\n");
 				}
 			}
-		 break;
-		 default:
+		break;
+		default:
 			LOG("|main.c|  WARNING: Too many arguments - no file loaded\n");
-		 break;
-	 }
-	// if(argc >= 3){ 
-		// LOG_VALUE("|main.c|  INFO: argc = ", argc);
-		// if( (strcmp(argv[2],"-e") == 0 || strcmp(argv[2],"--encrypt") == 0 ) && argc == 4){
-			// LOG("|main.c|  INFO: ENCRYPTING FILE\n");
-			// encryptData(buffer, argv[3]);
-		// } else {
-			// if( (strcmp(argv[2],"-d") == 0 || strcmp(argv[2],"--decrypt") == 0) && argc == 4 ) {
-				// LOG("|main.c|  INFO: DECRYPTING FILE\n");
-			// } else {
-				// LOG("|main.c|  WARNING: UNKNOWN ARGUMENT\n");
-			// }
-		// }			
-	// }
+	    break;
+	}
 	
-	rePrintInterface(loadedFilePath);
+	rePrintInterface(loadedFilePath);																// for some reason navigation panel appears only after second rePrint, dunno why
+	rePrintInterface(loadedFilePath);																// it's not pretty, but it works
 	/*
 	 * USER INPUT
 	 */
@@ -156,7 +143,6 @@ int main(int argc, char **argv) {
 			case CLOSE_FILE_BTN_2:
 				clearBuffer();
 				LOG("|main.c|  INFO: file closed\n");
-				// readFile(DEBUG_SAVE_FILE_3, buffer);
 			break;
 			case SAVE_AS_BTN_1:
 			case SAVE_AS_BTN_2:
@@ -174,6 +160,6 @@ int main(int argc, char **argv) {
 				LOG3("|main.c|  INFO: pressed: ", &userInput, "\n");
 			break;
 		}
-		rePrintInterface(loadedFilePath);
+		// rePrintInterface(loadedFilePath);
 	}		
 }
