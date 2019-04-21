@@ -3,6 +3,7 @@
 
 #define PROJECT_ROOT "C:\\Users\\Greg\\Dropbox\\PROGRAMOWANIE\\C\\Judy"
 #define LOG_PATH     "C:\\Users\\Greg\\Dropbox\\PROGRAMOWANIE\\C\\Judy\\logs\\debug.log"
+#define DEFAULT_FILE "N:\\DOKUMENTY\\pass.txt"
 
 #define SCREEN_WIDTH  121
 #define SCREEN_HEIGHT  53

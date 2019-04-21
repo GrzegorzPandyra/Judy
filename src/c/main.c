@@ -12,7 +12,7 @@ Kraków 2018
  * > FIXED crash when no file is selected
  * > FIXED missing lines at the start and end of buffer (when scrolling the screen)
  * > FIXED navigation window is missing content on startup
- *
+ * > missing file path when opening file from within the program
  *
  * TO DO:
  * > DONE file navigation(open/close file)
@@ -47,13 +47,13 @@ int main(int argc, char **argv) {
 	 * ARGS EXECUTION
 	 */
 	if(argc == 1){
-		loadedFilePath = "<select file>";															//program launched without target file						
+		readFile(DEFAULT_FILE, buffer);																//launch with default file
 	} else {
 		loadedFilePath = argv[1];															
 	}	
 	switch(argc){
 		case 1:
-			LOG("|main.c|  INFO: no file loaded\n");
+			LOG("|main.c|  INFO: Default file loaded\n");
 		break;
 		case 2:
 			readFile(loadedFilePath, buffer);	
